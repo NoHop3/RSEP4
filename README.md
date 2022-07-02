@@ -22,6 +22,12 @@
 | 8  | Low | As a User I would like to |    3     | ❌      |
 | 9  | Low | As a user I would like to |    3     | ❌      |
 
+### Change log:
+| ID| Description | Contributor | Date | 
+| - |-----------|:-----------:|:----:| 
+| 1 |Initial commit| Stefan, Lili | 02.07.2022 |  
+| 2 | ***1. Added file(s) ✔️ ->*** 44 <br/> ***2. Edited file(s) 📝 ->*** 0 | Stefan, Lili | 02.07.2022|
+
 ### Progress bar
 - [x] Initial commit of the app (02.07.2022)
 - [x] Initial commit of README.md (02.07.2022)
