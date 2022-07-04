@@ -13,13 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.rsep4.R;
+import com.example.rsep4.viewmodels.WeatherViewModel;
 
-public class MainFragment extends Fragment {
+public class WeatherFragment extends Fragment {
 
-    private MainViewModel mViewModel;
+    private WeatherViewModel mViewModel;
 
-    public static MainFragment newInstance() {
-        return new MainFragment();
+    public static WeatherFragment newInstance() {
+        return new WeatherFragment();
     }
 
     @Nullable
@@ -32,7 +33,7 @@ public class MainFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(WeatherViewModel.class);
         // TODO: Use the ViewModel
     }
 
