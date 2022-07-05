@@ -9,6 +9,6 @@ import retrofit2.http.GET;
 
 public interface APIService {
 
-    @GET("weather")
+    @GET("/api/v1/weather")
     Call<List<WeatherModel>> getWeatherList();
 }
