@@ -31,8 +31,9 @@
 | 3   | Update README.md <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 1 |   Stefan    | 02.07.2022 |
 | 4   | Retrofit initial commit <br/> 1. **_Added file(s) ✔️ ->_** 5 ↔️ **_2. Edited file(s) 📝 ->_** 8 |   Stefan    | 04.07.2022 |
 | 5   | Retrofit finalized commit <br/> 1. **_Added file(s) ✔️ ->_** 1 ↔️ **_2. Edited file(s) 📝 ->_** 10 |   Stefan    | 05.07.2022 |
-| 6   | Update README.md <br/> 1. Edited file(s) 📝 -> 1 |   Lili    | 06.07.2022 |
-| 7   | Update README.md <br/> 1. Edited file(s) 📝 -> 1 |   Lili    | 06.07.2022 |
+| 6   | Update README.md <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 1|   Lili    | 06.07.2022 |
+| 7   | Update README.md <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 1|   Lili    | 06.07.2022 |
+| 8   | Adding Details layout <br/> 1. **_Added file(s) ✔️ ->_** 8 ↔️ **_2. Edited file(s) 📝 ->_** 4|   Stefan    | 06.07.2022 |
 
 ### Progress bar
 - [x] Initial commit of the app (02.07.2022)
