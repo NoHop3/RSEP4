@@ -14,13 +14,13 @@
 | -- | -------  |:-------------:| :--------:| :------: | 
 | 1  | Critical | As a user I want to be able to see the temperature of my chosen location |   8     | ❌/✔️ | 
 | 2  | Critical | As a user I want to be able to see the temperature for multiple hours  |   8     | ❌    | 
-| 3  | High | As a user I want to be able to see the weather forecast for the next 6 days  |    5     | ❌      |
+| 3  | High | As a user I want to be able to add location to my forcast list.  |    5     | ❌      |
 | 4  | High | As a user I want to be able to see a visualization of the forcast  |    5     | ❌      |
 | 5  | High | As a user I want to be able to switch between locations |    5     | ❌      |
-| 6  | Low | As a user I want to be able to see the previous temperature while offline |    6     | ❌      |
-| 7  | Low | As a User I would like to |    3     | ❌      |
-| 8  | Low | As a User I would like to |    3     | ❌      |
-| 9  | Low | As a user I would like to |    3     | ❌      |
+| 6  | Low | As a user I want to be able to see the weather forecast for the next 6 days |    6     | ❌      |
+| 7  | Low | As a user I want to be able to see the previous temperature while offline |    3     | ❌      |
+| 8  | Low | As a user I want to be |    3     | ❌      |
+| 9  | Low | As a user I want to be |    3     | ❌      |
 
 ### Change log:
 | ID| Description | Contributor | Date | 
@@ -32,6 +32,7 @@
 | 4   | Retrofit initial commit <br/> 1. **_Added file(s) ✔️ ->_** 5 ↔️ **_2. Edited file(s) 📝 ->_** 8 |   Stefan    | 04.07.2022 |
 | 5   | Retrofit finalized commit <br/> 1. **_Added file(s) ✔️ ->_** 1 ↔️ **_2. Edited file(s) 📝 ->_** 10 |   Stefan    | 05.07.2022 |
 | 6   | Update README.md <br/> 1. Edited file(s) 📝 -> 1 |   Lili    | 06.07.2022 |
+| 7   | Update README.md <br/> 1. Edited file(s) 📝 -> 1 |   Lili    | 06.07.2022 |
 
 ### Progress bar
 - [x] Initial commit of the app (02.07.2022)
