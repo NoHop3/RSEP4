@@ -33,7 +33,7 @@
                 android:id="@+id/update_at"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Update at"
+                android:text="Updated at"
                 android:textSize="14sp">
 
             </TextView>
@@ -54,11 +54,11 @@
 
 
             <TextView
-                android:id="@+id/status"
+                android:id="@+id/description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Clear Sky"
+                android:text="Cloudy with a chance of rain"
                 android:textSize="18sp">
 
             </TextView>
@@ -370,4 +370,21 @@
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
+    <ProgressBar
+        android:id="@+id/loader"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </ProgressBar>
+    <TextView
+        android:id="@+id/errorText"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:text="Something went wrong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </TextView>
 </RelativeLayout>
