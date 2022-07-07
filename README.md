@@ -34,6 +34,8 @@
 | 6   | Update README.md <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 1|   Lili    | 06.07.2022 |
 | 7   | Update README.md <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 1|   Lili    | 06.07.2022 |
 | 8   | Adding Details layout <br/> 1. **_Added file(s) ✔️ ->_** 8 ↔️ **_2. Edited file(s) 📝 ->_** 4|   Stefan    | 06.07.2022 |
+| 9   | Small changes <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 3|   Stefan    | 07.07.2022 |
+| 10   | Update README.md <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 1|   Stefan    | 07.07.2022 |
 
 ### Progress bar
 - [x] Initial commit of the app (02.07.2022)
