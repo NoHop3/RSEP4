@@ -39,8 +39,8 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
 
     @Override
     public void onBindViewHolder(@NonNull WeatherViewHolder holder, int position) {
-        holder.textView.setText(this.weatherList.get(position).getCity().toString());
-        Glide.with(context).load(this.weatherList.get(position).getIcon()).apply(RequestOptions.centerCropTransform()).into(holder.imageView);
+        holder.textView.setText(this.weatherList.get(position).getCity());
+        Glide.with(context).load(this.weatherList.get(position).getPicture()).apply(RequestOptions.centerCropTransform()).into(holder.imageView);
     }
 
     @Override

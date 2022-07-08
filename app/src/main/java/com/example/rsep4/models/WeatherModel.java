@@ -1,39 +1,39 @@
 package com.example.rsep4.models;
 
-import com.google.gson.annotations.SerializedName;
-
-import java.sql.Date;
-
 public class WeatherModel {
 
     private String _id;
     private String city;
     private String country;
-    private int temperature;
+    private int avgTemp;
+    private int minTemp;
+    private int maxTemp;
     private int humidity;
     private int pressure;
-
-    // If the variable we declare is different than the json object we use SerializedName
-    @SerializedName("windspeed")
-    private int windSpeed;
-
-    private String windDirection;
+    private int wind;
+    private String sunsetTime;
+    private String sunriseTime;
     private String description;
-    private String icon;
-    private String date;
+    private String picture;
+    private String updatedAt;
+    private String status;
 
-    public WeatherModel(String _id, String city, String country, int temperature, int humidity, int pressure, int windSpeed, String windDirection, String description, String icon, String date) {
+    public WeatherModel(String _id, String city, String country, int avgTemp, int minTemp, int maxTemp, int humidity, int pressure, int wind, String description, String picture, String updatedAt, String status, String sunriseTime, String sunsetTime) {
         this._id = _id;
         this.city = city;
         this.country = country;
-        this.temperature = temperature;
+        this.avgTemp = avgTemp;
+        this.minTemp = minTemp;
+        this.maxTemp = maxTemp;
         this.humidity = humidity;
         this.pressure = pressure;
-        this.windSpeed = windSpeed;
-        this.windDirection = windDirection;
+        this.wind = wind;
+        this.sunriseTime = sunriseTime;
+        this.sunsetTime = sunsetTime;
         this.description = description;
-        this.icon = icon;
-        this.date = date;
+        this.picture = picture;
+        this.updatedAt = updatedAt;
+        this.status = status;
     }
 
     public String get_id() {
@@ -60,12 +60,28 @@ public class WeatherModel {
         this.country = country;
     }
 
-    public int getTemperature() {
-        return temperature;
+    public int getAvgTemp() {
+        return avgTemp;
     }
 
-    public void setTemperature(int temperature) {
-        this.temperature = temperature;
+    public void setAvgTemp(int avgTemp) {
+        this.avgTemp = avgTemp;
+    }
+
+    public int getMinTemp() {
+        return minTemp;
+    }
+
+    public void setMinTemp(int minTemp) {
+        this.minTemp = minTemp;
+    }
+
+    public int getMaxTemp() {
+        return maxTemp;
+    }
+
+    public void setMaxTemp(int maxTemp) {
+        this.maxTemp = maxTemp;
     }
 
     public int getHumidity() {
@@ -84,20 +100,12 @@ public class WeatherModel {
         this.pressure = pressure;
     }
 
-    public int getWindSpeed() {
-        return windSpeed;
+    public int getWind() {
+        return wind;
     }
 
-    public void setWindSpeed(int windSpeed) {
-        this.windSpeed = windSpeed;
-    }
-
-    public String getWindDirection() {
-        return windDirection;
-    }
-
-    public void setWindDirection(String windDirection) {
-        this.windDirection = windDirection;
+    public void setWind(int wind) {
+        this.wind = wind;
     }
 
     public String getDescription() {
@@ -108,19 +116,43 @@ public class WeatherModel {
         this.description = description;
     }
 
-    public String getIcon() {
-        return icon;
+    public String getPicture() {
+        return picture;
     }
 
-    public void setIcon(String icon) {
-        this.icon = icon;
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
-    public String getDate() {
-        return date;
+    public String getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getSunsetTime() {
+        return sunsetTime;
+    }
+
+    public void setSunsetTime(String sunsetTime) {
+        this.sunsetTime = sunsetTime;
+    }
+
+    public String getSunriseTime() {
+        return sunriseTime;
+    }
+
+    public void setSunriseTime(String sunriseTime) {
+        this.sunriseTime = sunriseTime;
     }
 }

@@ -21,14 +21,13 @@ public class WeatherViewModel extends ViewModel {
     private MutableLiveData<List<WeatherModel>> weatherList;
     public WeatherViewModel(){
         weatherList = new MutableLiveData<>();
-
     }
 
     public MutableLiveData<List<WeatherModel>> getWeatherListObserver() {
         return weatherList;
     }
 
-    public void makeApiCall(){
+    public void getAllWeather(){
         APIService apiService = RetrofitInstance.getRetrofitClient().create(APIService.class);
         Call<List<WeatherModel>> call = apiService.getWeatherList();
         call.enqueue(new Callback<List<WeatherModel>>() {

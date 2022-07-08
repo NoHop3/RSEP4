@@ -1,6 +1,5 @@
 package com.example.rsep4.ui.main;
 
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -48,20 +47,17 @@ public class WeatherFragment extends Fragment {
         adapter = new WeatherAdapter(view.getContext(), weatherList);
         recyclerView.setAdapter(adapter);
         mViewModel = new ViewModelProvider(this).get(WeatherViewModel.class);
-        mViewModel.getWeatherListObserver().observe(getViewLifecycleOwner(), new Observer<List<WeatherModel>>() {
-            @Override
-            public void onChanged(List<WeatherModel> weatherModels) {
-                 if(weatherModels != null) {
-                     weatherList = weatherModels;
-                     adapter.setWeatherList(weatherModels);
-                     textViewNoResult.setVisibility(View.GONE);
-                 }
-                 else {
-                    textViewNoResult.setVisibility(View.VISIBLE);
-                 }
-            }
+        mViewModel.getWeatherListObserver().observe(getViewLifecycleOwner(), weatherModels -> {
+             if(weatherModels != null) {
+                 weatherList = weatherModels;
+                 adapter.setWeatherList(weatherModels);
+                 textViewNoResult.setVisibility(View.GONE);
+             }
+             else {
+                textViewNoResult.setVisibility(View.VISIBLE);
+             }
         });
-        mViewModel.makeApiCall();
+        mViewModel.getAllWeather();
         return view;
     }
 }
