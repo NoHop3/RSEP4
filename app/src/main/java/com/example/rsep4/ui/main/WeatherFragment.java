@@ -20,6 +20,8 @@ import com.example.rsep4.R;
 import com.example.rsep4.adapter.WeatherAdapter;
 import com.example.rsep4.models.WeatherModel;
 import com.example.rsep4.viewmodels.WeatherViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
@@ -30,6 +32,7 @@ public class WeatherFragment extends Fragment {
     TextView textViewNoResult;
     WeatherAdapter adapter;
     List<WeatherModel> weatherList;
+    FloatingActionButton fabAdd;
 
     public static WeatherFragment newInstance() {
         return new WeatherFragment();
@@ -40,8 +43,13 @@ public class WeatherFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
+
+        // Initialize views
         recyclerView = view.findViewById(R.id.weatherRecyclerView);
         textViewNoResult = view.findViewById(R.id.textViewNoResult);
+        fabAdd = view.findViewById(R.id.fabAdd);
+
+        // Fragment logic
         LinearLayoutManager layoutManager = new GridLayoutManager(view.getContext(), 1);
         recyclerView.setLayoutManager(layoutManager);
         adapter = new WeatherAdapter(view.getContext(), weatherList);
@@ -58,6 +66,14 @@ public class WeatherFragment extends Fragment {
              }
         });
         mViewModel.getAllWeather();
+
+        // FAB onclick -> Should go to add a new location fragment
+        fabAdd.setOnClickListener( view1 ->
+                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null)
+                        .show()
+        );
+
         return view;
     }
 }

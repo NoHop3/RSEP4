@@ -22,6 +22,8 @@ import com.example.rsep4.adapter.WeatherAdapter;
 import com.example.rsep4.models.WeatherModel;
 import com.example.rsep4.viewmodels.WeatherDetailsViewModel;
 import com.example.rsep4.viewmodels.WeatherViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 public class WeatherDetailsFragment extends Fragment {
 
@@ -41,6 +43,7 @@ public class WeatherDetailsFragment extends Fragment {
     private TextView status;
     private TextView errorText;
     private ProgressBar loader;
+    FloatingActionButton fabEdit;
 
     public static WeatherDetailsFragment newInstance() {
         return new WeatherDetailsFragment();
@@ -55,19 +58,19 @@ public class WeatherDetailsFragment extends Fragment {
         // Setting all layouts
         loader = view.findViewById(R.id.loader);
         errorText = view.findViewById(R.id.errorText);
-        picture= view.findViewById(R.id.picture);;
-        location= view.findViewById(R.id.location);;
-        avgTemp= view.findViewById(R.id.avgTemp);;
-        minTemp= view.findViewById(R.id.minTemp);;
-        maxTemp= view.findViewById(R.id.maxTemp);;
-        description= view.findViewById(R.id.description);;
-        pressure= view.findViewById(R.id.pressure);;
-        wind= view.findViewById(R.id.wind);;
-        humidity= view.findViewById(R.id.humidity);;
-        sunsetTime= view.findViewById(R.id.sunsetTime);;
-        sunriseTime= view.findViewById(R.id.sunriseTime);;
-        status= view.findViewById(R.id.status);;
-
+        picture= view.findViewById(R.id.picture);
+        location= view.findViewById(R.id.location);
+        avgTemp= view.findViewById(R.id.avgTemp);
+        minTemp= view.findViewById(R.id.minTemp);
+        maxTemp= view.findViewById(R.id.maxTemp);
+        description= view.findViewById(R.id.description);
+        pressure= view.findViewById(R.id.pressure);
+        wind= view.findViewById(R.id.wind);
+        humidity= view.findViewById(R.id.humidity);
+        sunsetTime= view.findViewById(R.id.sunsetTime);
+        sunriseTime= view.findViewById(R.id.sunriseTime);
+        status= view.findViewById(R.id.status);
+        fabEdit = view.findViewById(R.id.fabEdit);
 
         // Logic for WeatherDetailsFragment
         loader.setVisibility(View.VISIBLE);
@@ -97,6 +100,14 @@ public class WeatherDetailsFragment extends Fragment {
             }
         });
         mViewModel.getWeatherDetails(mViewModel.getCity());
+
+        // FAB onclick -> should go to edit existing location fragment
+        fabEdit.setOnClickListener( view1 ->
+                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null)
+                        .show()
+        );
+
         return view;
     }
 }

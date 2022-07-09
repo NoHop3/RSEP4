@@ -10,13 +10,24 @@
     android:background="@drawable/gradient_bg"
     tools:context=".ui.main.WeatherFragment">
 
+    <TextView
+        android:id="@+id/mainTitle"
+        android:text="Locations"
+        android:textSize="42sp"
+        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
+    </TextView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/weatherRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        />
+        android:layout_below="@id/mainTitle"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:visibility="gone"
@@ -29,5 +40,24 @@
         android:textStyle="bold"
         />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="end">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginBottom="32dp"
+            android:background="@color/accent"
+            android:src="@drawable/ic_baseline_add_24"
+            app:backgroundTint="@color/accent"
+            app:fabSize="normal" />
+    </RelativeLayout>
 
 </RelativeLayout>
+
