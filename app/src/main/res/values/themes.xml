@@ -6,5 +6,7 @@
         <item name="colorPrimaryDark">#122259</item>
         <item name="colorAccent">@color/teal_200</item>
         <item name="android:textColor">#fff</item>
+        <item name="android:textColorHint">#fff</item>
+        <item name="editTextColor">#fff</item>
     </style>
 </resources>
