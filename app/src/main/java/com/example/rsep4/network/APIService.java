@@ -1,5 +1,6 @@
 package com.example.rsep4.network;
 
+import com.example.rsep4.models.UserModel;
 import com.example.rsep4.models.WeatherModel;
 
 import java.util.List;
@@ -29,4 +30,13 @@ public interface APIService {
 
     @DELETE("/api/v1/weather/{city}")
     Call<WeatherModel> deleteWeatherForCity(@Path("city") String city);
+
+    @GET("/api/v1/users/login")
+    Call<UserModel> login(@Body UserModel user);
+
+    @POST("/api/v1/users/")
+    Call<UserModel> register(@Body UserModel user);
+
+    @PUT("/api/v1/users/{username}")
+    Call<UserModel> updateUser(@Path("username") String username, @Body UserModel user);
 }

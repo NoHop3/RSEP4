@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="25dp"
-    android:background="@drawable/gradient_bg">
+    android:background="@drawable/gradient_bg"
+    tools:context=".ui.main.LoginFragment">
 
     <TextView
         android:layout_width="wrap_content"
@@ -86,9 +87,10 @@
         android:layout_below="@id/passwordField">
 
         <Button
+            android:id="@+id/btnLogin"
             android:layout_gravity="center"
             android:layout_marginTop="20sp"
-            android:background="@color/accent"
+            android:background="@color/purple_200"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="24sp"
@@ -110,7 +112,7 @@
                 android:layout_height="wrap_content"/>
             <TextView
                 android:layout_marginTop="15sp"
-                android:id="@+id/signUp"
+                android:id="@+id/goToRegister"
                 android:layout_width="wrap_content"
                 android:text="Don't have an account? Sign up!"
                 android:layout_height="wrap_content">
