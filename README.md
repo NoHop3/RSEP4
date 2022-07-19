@@ -48,6 +48,8 @@
 | 21   | Update README.md <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 1|   Stefan    | 19.07.2022 |
 | 22   | Continuing work on stg/weather-details-add-edit <br/> 1. **_Added file(s) ✔️ ->_** 2 ↔️ **_2. Edited file(s) 📝 ->_** 11|   Stefan    | 19.07.2022 |
 | 23   | Continuing work on stg/weather-details-add-edit <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 8|   Stefan    | 19.07.2022 |
+| 24   | Merge pull request #2 from NoHop3/stg/weather-details-add-edit <br/> 1. **_Added file(s) ✔️ ->_** 2 ↔️ **_2. Edited file(s) 📝 ->_** 12|   Stefan    | 19.07.2022 |
+| 25   | Update README.md <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 1|   Stefan    | 19.07.2022 |
 
 ### Progress bar
 - [x] Initial commit of the app (02.07.2022)
@@ -55,7 +57,6 @@
 - [ ] Work period for the SEP4 app ( 02.07.2022 - 12.08.2022 )
 - [ ] Handin for the android app semester project (12.08.2022)
 - [ ] Examination (Late August)
-
 ### [Youtube Preview of the app] ()
 
 ### References
