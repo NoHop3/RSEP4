@@ -2,13 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/details"
+    android:id="@+id/edit"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="25dp"
-    android:background="@drawable/gradient_bg">
-<!--    tools:context=".ui.main.WeatherDetailsFragment"-->
+    android:background="@drawable/gradient_bg"
+    tools:context=".ui.main.WeatherModifyFragment">
 
     <RelativeLayout
         android:id="@+id/mainContainer"
@@ -23,7 +23,7 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/location"
+                android:id="@+id/modifyLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="Location"
@@ -32,10 +32,10 @@
             </EditText>
 
             <ImageView
-                android:id="@+id/picture"
-                android:layout_gravity="center"
+                android:id="@+id/modifyPicture"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"/>
+                android:layout_height="160dp"
+                android:layout_gravity="center" />
         </LinearLayout>
 
         <LinearLayout
@@ -48,7 +48,7 @@
 
 
             <EditText
-                android:id="@+id/description"
+                android:id="@+id/modifyDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -62,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <EditText
-                    android:id="@+id/avgTemp"
+                    android:id="@+id/modifyAvgTemp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-thin"
@@ -95,7 +95,7 @@
 
                     </TextView>
                     <EditText
-                        android:id="@+id/minTemp"
+                        android:id="@+id/modifyMinTemp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:hint="17">
@@ -118,7 +118,7 @@
 
                     </TextView>
                     <EditText
-                        android:id="@+id/maxTemp"
+                        android:id="@+id/modifyMaxTemp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:hint="27">
@@ -165,7 +165,7 @@
 
                     </TextView>
                     <EditText
-                        android:id="@+id/pressure"
+                        android:id="@+id/modifyPressure"
                         android:textSize="12sp"
                         android:hint="102"
                         android:layout_width="wrap_content"
@@ -206,7 +206,7 @@
 
                     </TextView>
                     <EditText
-                        android:id="@+id/humidity"
+                        android:id="@+id/modifyHumidity"
                         android:textSize="12sp"
                         android:hint="40"
                         android:layout_width="wrap_content"
@@ -247,7 +247,7 @@
 
                     </TextView>
                     <EditText
-                        android:id="@+id/wind"
+                        android:id="@+id/modifyWind"
                         android:textSize="12sp"
                         android:hint="70"
                         android:layout_width="wrap_content"
@@ -299,7 +299,7 @@
 
                     </TextView>
                     <EditText
-                        android:id="@+id/sunriseTime"
+                        android:id="@+id/modifySunriseTime"
                         android:textSize="12sp"
                         android:hint="05:30"
                         android:layout_width="wrap_content"
@@ -340,7 +340,7 @@
 
                     </TextView>
                     <EditText
-                        android:id="@+id/status"
+                        android:id="@+id/modifyStatus"
                         android:textSize="12sp"
                         android:hint="Cloudy"
                         android:layout_width="wrap_content"
@@ -381,7 +381,7 @@
 
                     </TextView>
                     <EditText
-                        android:id="@+id/sunsetTime"
+                        android:id="@+id/modifySunsetTime"
                         android:textSize="12sp"
                         android:hint="23:30"
                         android:layout_width="wrap_content"
@@ -398,7 +398,7 @@
         </LinearLayout>
     </RelativeLayout>
     <ProgressBar
-        android:id="@+id/loader"
+        android:id="@+id/modifyLoader"
         android:layout_centerInParent="true"
         android:visibility="gone"
         android:layout_width="wrap_content"
@@ -406,7 +406,7 @@
 
     </ProgressBar>
     <TextView
-        android:id="@+id/errorText"
+        android:id="@+id/modifyErrorText"
         android:layout_centerInParent="true"
         android:visibility="gone"
         android:text="Something went wrong"
@@ -426,6 +426,19 @@
             android:layout_marginBottom="32dp"
             android:background="@color/accent"
             android:src="@drawable/ic_baseline_done_24"
+            app:backgroundTint="@color/accent"
+            app:fabSize="mini" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:background="@color/accent"
+            android:src="@drawable/ic_baseline_arrow_back_24"
             app:backgroundTint="@color/accent"
             app:fabSize="mini" />
     </RelativeLayout>

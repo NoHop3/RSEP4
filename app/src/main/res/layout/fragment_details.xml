@@ -26,6 +26,7 @@
                 android:id="@+id/location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10sp"
                 android:text="Location"
                 android:textSize="24sp">
 
@@ -35,15 +36,17 @@
                 android:id="@+id/updatedAt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="20sp"
                 android:text="Updated at"
-                android:textSize="14sp">
+                android:textSize="18sp">
 
             </TextView>
+
             <ImageView
                 android:id="@+id/picture"
-                android:layout_gravity="center"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"/>
+                android:layout_height="160dp"
+                android:layout_gravity="center" />
         </LinearLayout>
 
         <LinearLayout
@@ -54,12 +57,12 @@
             android:orientation="vertical">
 
 
-
             <TextView
                 android:id="@+id/description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_margin="20sp"
                 android:text="Cloudy with a chance of rain"
                 android:textSize="18sp">
 
@@ -68,18 +71,20 @@
             <TextView
                 android:id="@+id/avgTemp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="130dp"
                 android:layout_gravity="center"
                 android:fontFamily="sans-serif-thin"
                 android:text="24 °C"
                 android:textSize="90sp">
 
             </TextView>
+
             <LinearLayout
-                android:orientation="horizontal"
-                android:layout_gravity="center"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/minTemp"
                     android:layout_width="wrap_content"
@@ -87,11 +92,13 @@
                     android:text="Min temp 17 °C">
 
                 </TextView>
+
                 <Space
                     android:layout_width="50dp"
                     android:layout_height="wrap_content">
 
                 </Space>
+
                 <TextView
                     android:id="@+id/maxTemp"
                     android:layout_width="wrap_content"
@@ -101,269 +108,309 @@
                 </TextView>
             </LinearLayout>
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/detailsContainer"
-            android:orientation="vertical"
-            android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical">
+
             <LinearLayout
-                android:orientation="horizontal"
-                android:weightSum="3"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:padding="8dp"
-                    android:background="#3CF1EBF1"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#3CF1EBF1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
                     <ImageView
-                        android:src="@drawable/pressure"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
+                        android:src="@drawable/pressure"
                         app:tint="#fff">
 
                     </ImageView>
+
                     <Space
                         android:layout_width="5dp"
                         android:layout_height="wrap_content">
 
                     </Space>
+
                     <TextView
-                        android:textSize="12sp"
-                        android:text="Pressure"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:text="Pressure"
+                        android:textSize="12sp">
 
                     </TextView>
+
                     <TextView
                         android:id="@+id/pressure"
-                        android:textSize="12sp"
-                        android:text="102"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:text="102"
+                        android:textSize="12sp">
 
                     </TextView>
                 </LinearLayout>
+
                 <Space
                     android:layout_width="10dp"
                     android:layout_height="wrap_content">
 
                 </Space>
+
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:padding="8dp"
-                    android:background="#3CF1EBF1"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#3CF1EBF1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
                     <ImageView
-                        android:src="@drawable/humidity"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
+                        android:src="@drawable/humidity"
                         app:tint="#fff">
 
                     </ImageView>
+
                     <Space
                         android:layout_width="5dp"
                         android:layout_height="wrap_content">
 
                     </Space>
+
                     <TextView
-                        android:textSize="12sp"
-                        android:text="Humidity"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:text="Humidity"
+                        android:textSize="12sp">
 
                     </TextView>
+
                     <TextView
                         android:id="@+id/humidity"
-                        android:textSize="12sp"
-                        android:text="40"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:text="40"
+                        android:textSize="12sp">
 
                     </TextView>
                 </LinearLayout>
+
                 <Space
                     android:layout_width="10dp"
                     android:layout_height="wrap_content">
 
                 </Space>
+
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:padding="8dp"
-                    android:background="#3CF1EBF1"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#3CF1EBF1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
                     <ImageView
-                        android:src="@drawable/wind"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
+                        android:src="@drawable/wind"
                         app:tint="#fff">
 
                     </ImageView>
+
                     <Space
                         android:layout_width="5dp"
                         android:layout_height="wrap_content">
 
                     </Space>
+
                     <TextView
-                        android:textSize="12sp"
-                        android:text="Wind"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:text="Wind"
+                        android:textSize="12sp">
 
                     </TextView>
+
                     <TextView
                         android:id="@+id/wind"
-                        android:textSize="12sp"
-                        android:text="70"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:text="70"
+                        android:textSize="12sp">
 
                     </TextView>
                 </LinearLayout>
+
                 <Space
                     android:layout_width="10dp"
                     android:layout_height="wrap_content">
 
                 </Space>
             </LinearLayout>
+
             <Space
                 android:layout_width="wrap_content"
                 android:layout_height="10sp">
 
             </Space>
+
             <LinearLayout
-                android:orientation="horizontal"
-                android:weightSum="3"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:padding="8dp"
-                    android:background="#3CF1EBF1"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#3CF1EBF1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
                     <ImageView
-                        android:src="@drawable/sunrise"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
+                        android:src="@drawable/sunrise"
                         app:tint="#fff">
 
                     </ImageView>
+
                     <Space
                         android:layout_width="5dp"
                         android:layout_height="wrap_content">
 
                     </Space>
+
                     <TextView
-                        android:textSize="12sp"
-                        android:text="Sunrise"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:text="Sunrise"
+                        android:textSize="12sp">
 
                     </TextView>
+
                     <TextView
                         android:id="@+id/sunriseTime"
-                        android:textSize="12sp"
-                        android:text="05:30"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:text="05:30"
+                        android:textSize="12sp">
 
                     </TextView>
                 </LinearLayout>
+
                 <Space
                     android:layout_width="10dp"
                     android:layout_height="wrap_content">
 
                 </Space>
+
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:padding="8dp"
-                    android:background="#3CF1EBF1"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#3CF1EBF1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
                     <ImageView
-                        android:src="@drawable/info"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
+                        android:src="@drawable/info"
                         app:tint="#fff">
 
                     </ImageView>
+
                     <Space
                         android:layout_width="5dp"
                         android:layout_height="wrap_content">
 
                     </Space>
+
                     <TextView
-                        android:textSize="12sp"
-                        android:text="Status"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:text="Status"
+                        android:textSize="12sp">
 
                     </TextView>
+
                     <TextView
                         android:id="@+id/status"
-                        android:textSize="12sp"
-                        android:text="Cloudy"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:text="Cloudy"
+                        android:textSize="12sp">
 
                     </TextView>
                 </LinearLayout>
+
                 <Space
                     android:layout_width="10dp"
                     android:layout_height="wrap_content">
 
                 </Space>
+
                 <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:padding="8dp"
-                    android:background="#3CF1EBF1"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#3CF1EBF1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
                     <ImageView
-                        android:src="@drawable/sunrise"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
+                        android:src="@drawable/sunrise"
                         app:tint="#fff">
 
                     </ImageView>
+
                     <Space
                         android:layout_width="5dp"
                         android:layout_height="wrap_content">
 
                     </Space>
+
                     <TextView
-                        android:textSize="12sp"
-                        android:text="Sunset"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:text="Sunset"
+                        android:textSize="12sp">
 
                     </TextView>
+
                     <TextView
                         android:id="@+id/sunsetTime"
-                        android:textSize="12sp"
-                        android:text="23:30"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:text="23:30"
+                        android:textSize="12sp">
 
                     </TextView>
                 </LinearLayout>
+
                 <Space
                     android:layout_width="10dp"
                     android:layout_height="wrap_content">
@@ -401,6 +448,21 @@
             android:layout_marginBottom="32dp"
             android:background="@color/accent"
             android:src="@drawable/ic_baseline_edit_24"
+            app:backgroundTint="@color/accent"
+            app:fabSize="mini" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:background="@color/accent"
+            android:src="@drawable/ic_baseline_arrow_back_24"
             app:backgroundTint="@color/accent"
             app:fabSize="mini" />
     </RelativeLayout>

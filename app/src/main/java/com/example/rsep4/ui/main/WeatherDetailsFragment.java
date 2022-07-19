@@ -1,6 +1,7 @@
 package com.example.rsep4.ui.main;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,9 +42,11 @@ public class WeatherDetailsFragment extends Fragment {
     private TextView sunsetTime;
     private TextView sunriseTime;
     private TextView status;
+    private TextView updatedAt;
     private TextView errorText;
     private ProgressBar loader;
     FloatingActionButton fabEdit;
+    FloatingActionButton fabBack;
 
     public static WeatherDetailsFragment newInstance() {
         return new WeatherDetailsFragment();
@@ -70,28 +73,34 @@ public class WeatherDetailsFragment extends Fragment {
         sunsetTime= view.findViewById(R.id.sunsetTime);
         sunriseTime= view.findViewById(R.id.sunriseTime);
         status= view.findViewById(R.id.status);
+        updatedAt= view.findViewById(R.id.updatedAt);
         fabEdit = view.findViewById(R.id.fabEdit);
+        fabBack = view.findViewById(R.id.fabBack);
 
         // Logic for WeatherDetailsFragment
         loader.setVisibility(View.VISIBLE);
-        mViewModel = new ViewModelProvider(this).get(WeatherDetailsViewModel.class);
+        mViewModel = new ViewModelProvider(getActivity()).get(WeatherDetailsViewModel.class);
 
+        Log.v("city", ""+mViewModel.getCity());
+        mViewModel.getWeatherDetails(mViewModel.getCity());
         mViewModel.getWeatherObjectObserver().observe(getViewLifecycleOwner(), weatherModels -> {
             if(weatherModels != null) {
                 loader.setVisibility(View.GONE);
+                errorText.setVisibility(View.GONE);
                 weatherObject = weatherModels;
                 location.setText(String.format("%s, %s", weatherObject.getCity(), weatherObject.getCountry()));
-                // TODO test if that glide statement would work
                 Glide.with(this).load(weatherObject.getPicture()).into(picture);
                 description.setText(weatherObject.getDescription());
                 avgTemp.setText(String.format("%s °C", weatherObject.getAvgTemp()));
-                minTemp.setText(String.format("%s °C", weatherObject.getMinTemp()));
-                maxTemp.setText(String.format("%s °C", weatherObject.getMaxTemp()));
+                minTemp.setText(String.format("Min %s °C", weatherObject.getMinTemp()));
+                maxTemp.setText(String.format("Max %s °C", weatherObject.getMaxTemp()));
                 pressure.setText(String.format("%s p", weatherObject.getPressure()));
                 wind.setText(String.format("%s m/s", weatherObject.getWind()));
                 humidity.setText(String.format("%s %%", weatherObject.getHumidity()));
                 sunsetTime.setText(weatherObject.getSunsetTime());
                 sunriseTime.setText(weatherObject.getSunriseTime());
+                updatedAt.setText(String.format("Last updated %s", weatherObject.getUpdatedAt()));
+
                 status.setText(weatherObject.getStatus());
             }
             else {
@@ -99,14 +108,36 @@ public class WeatherDetailsFragment extends Fragment {
                 errorText.setVisibility(View.VISIBLE);
             }
         });
-        mViewModel.getWeatherDetails(mViewModel.getCity());
 
         // FAB onclick -> should go to edit existing location fragment
         fabEdit.setOnClickListener( view1 ->
-                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
+                {
+                    if(this.getActivity() != null) {
+                        this.getActivity().getSupportFragmentManager().beginTransaction()
+                                .replace(this.getId(), WeatherModifyFragment.newInstance())
+                                .commitNow();
+                    }
+                    else
+                    {
+                        Snackbar.make(view, "Unable to go to edit a weather fragment", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null)
+                                .show();
+                    }
+                });
+
+        fabBack.setOnClickListener(view1 -> {
+            if(this.getActivity() != null) {
+                this.getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(this.getId(), WeatherFragment.newInstance())
+                        .commitNow();
+            }
+            else
+            {
+                Snackbar.make(view, "Unable to go back", Snackbar.LENGTH_LONG)
                         .setAction("Action", null)
-                        .show()
-        );
+                        .show();
+            }
+        });
 
         return view;
     }

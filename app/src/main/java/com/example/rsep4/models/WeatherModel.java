@@ -18,8 +18,7 @@ public class WeatherModel {
     private String updatedAt;
     private String status;
 
-    public WeatherModel(String _id, String city, String country, int avgTemp, int minTemp, int maxTemp, int humidity, int pressure, int wind, String description, String picture, String updatedAt, String status, String sunriseTime, String sunsetTime) {
-        this._id = _id;
+    public WeatherModel(String city, String country, int avgTemp, int minTemp, int maxTemp, int humidity, int pressure, int wind, String description, String picture, String updatedAt, String status, String sunriseTime, String sunsetTime) {
         this.city = city;
         this.country = country;
         this.avgTemp = avgTemp;
@@ -34,6 +33,11 @@ public class WeatherModel {
         this.picture = picture;
         this.updatedAt = updatedAt;
         this.status = status;
+    }
+
+    public WeatherModel(String _id, String city, String country, int avgTemp, int minTemp, int maxTemp, int humidity, int pressure, int wind, String description, String picture, String updatedAt, String status, String sunriseTime, String sunsetTime) {
+        this(city, country, avgTemp, minTemp, maxTemp, humidity, pressure, wind, description, picture, updatedAt, status, sunriseTime, sunsetTime);
+        this._id = _id;
     }
 
     public String get_id() {

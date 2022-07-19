@@ -1,5 +1,6 @@
 package com.example.rsep4.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,9 +21,11 @@ import java.util.List;
 public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder> {
     private Context context;
     private List<WeatherModel> weatherList;
-    public WeatherAdapter(Context context, List<WeatherModel> weatherList){
+    private ItemClickListener clickListener;
+    public WeatherAdapter(Context context, List<WeatherModel> weatherList, ItemClickListener clickListener){
         this.context = context;
         this.weatherList = weatherList;
+        this.clickListener = clickListener;
     }
     public void setWeatherList(List<WeatherModel> weatherList) {
         this.weatherList = weatherList;
@@ -38,8 +41,14 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
 
 
     @Override
-    public void onBindViewHolder(@NonNull WeatherViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull WeatherViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.textView.setText(this.weatherList.get(position).getCity());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clickListener.onWeatherClick(weatherList.get(position));
+            }
+        });
         Glide.with(context).load(this.weatherList.get(position).getPicture()).apply(RequestOptions.centerCropTransform()).into(holder.imageView);
     }
 
@@ -58,6 +67,10 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherV
             textView=itemView.findViewById(R.id.weatherTextView);
             imageView=itemView.findViewById(R.id.weatherImageView);
         }
+    }
+
+    public interface ItemClickListener{
+        void onWeatherClick(WeatherModel item);
     }
 }
 
