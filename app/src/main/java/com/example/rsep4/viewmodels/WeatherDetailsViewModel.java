@@ -28,20 +28,25 @@ public class WeatherDetailsViewModel extends ViewModel {
         return weatherObject;
     }
 
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
     public void createWeather(WeatherModel weatherToAdd){
         APIService apiService = RetrofitInstance.getRetrofitClient().create(APIService.class);
         Call<WeatherModel> call = apiService.addWeather(weatherToAdd);
         call.enqueue(new Callback<WeatherModel>() {
             @Override
             public void onResponse(@NonNull Call<WeatherModel> call, @NonNull Response<WeatherModel> response) {
-                Log.d("response", response.toString());
                 weatherObject.postValue(response.body());
             }
 
             @Override
             public void onFailure(@NonNull Call<WeatherModel> call, @NonNull Throwable t) {
-                Log.e("error creating weather", t.toString());
-
                 weatherObject.postValue(null);
             }
         });
@@ -49,20 +54,16 @@ public class WeatherDetailsViewModel extends ViewModel {
 
     public void getWeatherDetails(String city){
         APIService apiService = RetrofitInstance.getRetrofitClient().create(APIService.class);
-        Call<List<WeatherModel>> call = apiService.getWeatherForCity(city);
-        Log.e("error weather details", call.request().toString());
+        Call<WeatherModel> call = apiService.getWeatherForCity(city);
 
-        call.enqueue(new Callback<List<WeatherModel>>() {
+        call.enqueue(new Callback<WeatherModel>() {
             @Override
-            public void onResponse(@NonNull Call<List<WeatherModel>> call, @NonNull Response<List<WeatherModel>> response) {
-                Log.d("response", response.body().toString());
-                weatherObject.postValue(response.body().get(0));
+            public void onResponse(@NonNull Call<WeatherModel> call, @NonNull Response<WeatherModel> response) {
+                weatherObject.postValue(response.body());
             }
 
             @Override
-            public void onFailure(@NonNull Call<List<WeatherModel>> call, @NonNull Throwable t) {
-                Log.e("error weather details", t.toString());
-
+            public void onFailure(@NonNull Call<WeatherModel> call, @NonNull Throwable t) {
                 weatherObject.postValue(null);
             }
         });
@@ -74,14 +75,11 @@ public class WeatherDetailsViewModel extends ViewModel {
         call.enqueue(new Callback<WeatherModel>() {
             @Override
             public void onResponse(@NonNull Call<WeatherModel> call, @NonNull Response<WeatherModel> response) {
-                Log.d("response", response.toString());
                 weatherObject.postValue(response.body());
             }
 
             @Override
             public void onFailure(@NonNull Call<WeatherModel> call, @NonNull Throwable t) {
-                Log.d("response", t.toString());
-
                 weatherObject.postValue(null);
             }
         });
@@ -93,24 +91,17 @@ public class WeatherDetailsViewModel extends ViewModel {
         call.enqueue(new Callback<WeatherModel>() {
             @Override
             public void onResponse(@NonNull Call<WeatherModel> call, @NonNull Response<WeatherModel> response) {
-                Log.d("response", response.toString());
                 weatherObject.postValue(response.body());
             }
 
             @Override
             public void onFailure(@NonNull Call<WeatherModel> call, @NonNull Throwable t) {
-                Log.d("response", t.toString());
-
                 weatherObject.postValue(null);
             }
         });
     }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
+    public void resetDetails(){
+        weatherObject = new MutableLiveData<>();
+        setCity("");
     }
 }

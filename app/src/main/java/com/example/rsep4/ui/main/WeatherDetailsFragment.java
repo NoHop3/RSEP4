@@ -1,6 +1,7 @@
 package com.example.rsep4.ui.main;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,11 +79,14 @@ public class WeatherDetailsFragment extends Fragment {
 
         // Logic for WeatherDetailsFragment
         loader.setVisibility(View.VISIBLE);
-        mViewModel = new ViewModelProvider(this).get(WeatherDetailsViewModel.class);
+        mViewModel = new ViewModelProvider(getActivity()).get(WeatherDetailsViewModel.class);
 
+        Log.v("city", ""+mViewModel.getCity());
+        mViewModel.getWeatherDetails(mViewModel.getCity());
         mViewModel.getWeatherObjectObserver().observe(getViewLifecycleOwner(), weatherModels -> {
             if(weatherModels != null) {
                 loader.setVisibility(View.GONE);
+                errorText.setVisibility(View.GONE);
                 weatherObject = weatherModels;
                 location.setText(String.format("%s, %s", weatherObject.getCity(), weatherObject.getCountry()));
                 Glide.with(this).load(weatherObject.getPicture()).into(picture);
@@ -104,7 +108,6 @@ public class WeatherDetailsFragment extends Fragment {
                 errorText.setVisibility(View.VISIBLE);
             }
         });
-        mViewModel.getWeatherDetails(mViewModel.getCity());
 
         // FAB onclick -> should go to edit existing location fragment
         fabEdit.setOnClickListener( view1 ->

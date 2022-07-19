@@ -17,10 +17,10 @@ import retrofit2.http.Path;
 public interface APIService {
 
     @GET("weather/{city}")
-    Call<List<WeatherModel>> getWeatherForCity(@Path(value="city") String city);
+    Call<WeatherModel> getWeatherForCity(@Path("city") String city);
 
     @PUT("weather/{city}")
-    Call<WeatherModel> updateWeatherForCity(@Path(value="city") String city, @Body WeatherModel weather);
+    Call<WeatherModel> updateWeatherForCity(@Path("city") String city, @Body WeatherModel weather);
 
     @GET("weather")
     Call<List<WeatherModel>> getWeatherList();

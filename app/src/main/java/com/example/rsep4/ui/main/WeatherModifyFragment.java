@@ -29,6 +29,7 @@ import com.example.rsep4.viewmodels.WeatherViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 
 public class WeatherModifyFragment extends Fragment {
@@ -64,84 +65,86 @@ public class WeatherModifyFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_edit, container, false);
 
         // Setting all layouts
-        loader = view.findViewById(R.id.loader);
-        errorText = view.findViewById(R.id.errorText);
-        picture= view.findViewById(R.id.picture);
-        location= view.findViewById(R.id.location);
-        avgTemp= view.findViewById(R.id.avgTemp);
-        minTemp= view.findViewById(R.id.minTemp);
-        maxTemp= view.findViewById(R.id.maxTemp);
-        description= view.findViewById(R.id.description);
-        pressure= view.findViewById(R.id.pressure);
-        wind= view.findViewById(R.id.wind);
-        humidity= view.findViewById(R.id.humidity);
-        sunsetTime= view.findViewById(R.id.sunsetTime);
-        sunriseTime= view.findViewById(R.id.sunriseTime);
-        status= view.findViewById(R.id.status);
+        loader = view.findViewById(R.id.modifyLoader);
+        errorText = view.findViewById(R.id.modifyErrorText);
+        picture= view.findViewById(R.id.modifyPicture);
+        location= view.findViewById(R.id.modifyLocation);
+        avgTemp= view.findViewById(R.id.modifyAvgTemp);
+        minTemp= view.findViewById(R.id.modifyMinTemp);
+        maxTemp= view.findViewById(R.id.modifyMaxTemp);
+        description= view.findViewById(R.id.modifyDescription);
+        pressure= view.findViewById(R.id.modifyPressure);
+        wind= view.findViewById(R.id.modifyWind);
+        humidity= view.findViewById(R.id.modifyHumidity);
+        sunsetTime= view.findViewById(R.id.modifySunsetTime);
+        sunriseTime= view.findViewById(R.id.modifySunriseTime);
+        status= view.findViewById(R.id.modifyStatus);
         fabEdit = view.findViewById(R.id.fabEdit);
         fabBack = view.findViewById(R.id.fabBack);
 
         // Logic for WeatherModifyFragment
         loader.setVisibility(View.VISIBLE);
-        mViewModel = new ViewModelProvider(this).get(WeatherDetailsViewModel.class);
+        mViewModel = new ViewModelProvider(getActivity()).get(WeatherDetailsViewModel.class);
 
-        mViewModel.getWeatherObjectObserver().observe(getViewLifecycleOwner(), weatherModels -> {
-            if(weatherModels != null) {
-                loader.setVisibility(View.GONE);
-                weatherObject = weatherModels;
-                location.setText(String.format("%s, %s", weatherObject.getCity(), weatherObject.getCountry()));
-                // TODO test if that glide statement would work
-                Glide.with(this).load(weatherObject.getPicture()).into(picture);
-                description.setText(weatherObject.getDescription());
-                avgTemp.setText(weatherObject.getAvgTemp());
-                minTemp.setText(weatherObject.getMinTemp());
-                maxTemp.setText(weatherObject.getMaxTemp());
-                pressure.setText(weatherObject.getPressure());
-                wind.setText(weatherObject.getWind());
-                humidity.setText(weatherObject.getHumidity());
-                sunsetTime.setText(weatherObject.getSunsetTime());
-                sunriseTime.setText(weatherObject.getSunriseTime());
-                status.setText(weatherObject.getStatus());
+        try {
+            if(mViewModel.getWeatherObjectObserver()!=null) {
+                mViewModel.getWeatherDetails(mViewModel.getCity());
+                mViewModel.getWeatherObjectObserver().observe(getViewLifecycleOwner(), weatherModels -> {
+                    if (weatherModels != null) {
+                        loader.setVisibility(View.GONE);
+                        weatherObject = weatherModels;
+                        updateValues(weatherObject);
+                    } else {
+                        loader.setVisibility(View.GONE);
+                    }
+                });
             }
             else {
                 loader.setVisibility(View.GONE);
             }
-        });
-        mViewModel.getWeatherDetails(mViewModel.getCity());
+        }
+        catch (Exception e) {
+            Log.e("error in gettin details", e.getMessage() );
+        }
 
         // FAB onclick -> should go to edit existing location fragment
         fabEdit.setOnClickListener( view1 ->
         {
-            if (mViewModel.getWeatherObjectObserver().getValue() != null) {
-                mViewModel.updateWeatherDetails(mViewModel.getCity(), mViewModel.getWeatherObjectObserver().getValue());
-            }
-            else {
-                try{
-                    String[] locationStrings = location.getText().toString().split(",");
-                    String city = locationStrings[0];
-                    String country = locationStrings[1];
-                    int avgTempToAdd = Integer.parseInt(avgTemp.getText().toString());
-                    int minTempToAdd = Integer.parseInt(minTemp.getText().toString());
-                    int maxTempToAdd = Integer.parseInt(maxTemp.getText().toString());
-                    int humidityToAdd = Integer.parseInt(humidity.getText().toString());
-                    int pressureToAdd = Integer.parseInt(pressure.getText().toString());
-                    int windToAdd = Integer.parseInt(wind.getText().toString());
-                    String sunsetTimeToAdd = sunsetTime.getText().toString();
-                    String descriptionToAdd = description.getText().toString();
-                    String sunriseTimeToAdd = sunriseTime.getText().toString();
-                    String statusToAdd = status.getText().toString();
-                    String updatedAtToAdd = LocalDateTime.now().toString();
-                    String pictureToAdd = "";
-                    WeatherModel weatherModel = new WeatherModel(city, country,
-                            avgTempToAdd, minTempToAdd, maxTempToAdd, humidityToAdd,
-                            pressureToAdd, windToAdd, descriptionToAdd, pictureToAdd,
-                            updatedAtToAdd,statusToAdd,sunriseTimeToAdd, sunsetTimeToAdd);
+            try{
+                String[] locationStrings = location.getText().toString().split(",");
+                String city = locationStrings[0];
+                String country = locationStrings[1];
+                int avgTempToAdd = Integer.parseInt(avgTemp.getText().toString());
+                int minTempToAdd = Integer.parseInt(minTemp.getText().toString());
+                int maxTempToAdd = Integer.parseInt(maxTemp.getText().toString());
+                int humidityToAdd = Integer.parseInt(humidity.getText().toString());
+                int pressureToAdd = Integer.parseInt(pressure.getText().toString());
+                int windToAdd = Integer.parseInt(wind.getText().toString());
+                String sunsetTimeToAdd = sunsetTime.getText().toString();
+                String descriptionToAdd = description.getText().toString();
+                String sunriseTimeToAdd = sunriseTime.getText().toString();
+                String statusToAdd = status.getText().toString();
+                String updatedAtToAdd = LocalDateTime.now().toString();
+                String pictureToAdd = "";
+                WeatherModel weatherModel = new WeatherModel(city, country,
+                        avgTempToAdd, minTempToAdd, maxTempToAdd, humidityToAdd,
+                        pressureToAdd, windToAdd, descriptionToAdd, pictureToAdd,
+                        updatedAtToAdd,statusToAdd,sunriseTimeToAdd, sunsetTimeToAdd);
+                if (mViewModel.getWeatherObjectObserver().getValue() != null) {
+                    weatherModel.setPicture(mViewModel.getWeatherObjectObserver().getValue().getPicture());
+                    mViewModel.updateWeatherDetails(mViewModel.getCity(), weatherModel);
+                }
+                else {
                     mViewModel.createWeather(weatherModel);
                 }
-                catch (Exception e)
-                {
-                    Log.e("error adding weather", e.getMessage());
-                }
+            }
+            catch (Exception e)
+            {
+                Log.e("error adding weather", e.getMessage());
+            }
+            if (mViewModel.getWeatherObjectObserver().getValue() != null) {
+
+                mViewModel.updateWeatherDetails(mViewModel.getCity(), mViewModel.getWeatherObjectObserver().getValue());
             }
         });
 
@@ -160,5 +163,20 @@ public class WeatherModifyFragment extends Fragment {
         });
 
         return view;
+    }
+    public void updateValues(WeatherModel weatherObject)
+    {
+        location.setText(String.format("%s, %s", weatherObject.getCity(), weatherObject.getCountry()));
+        Glide.with(this).load(weatherObject.getPicture()).into(picture);
+        description.setText(weatherObject.getDescription());
+        avgTemp.setText(weatherObject.getAvgTemp()+"");
+        minTemp.setText(weatherObject.getMinTemp()+"");
+        maxTemp.setText(weatherObject.getMaxTemp()+"");
+        pressure.setText(weatherObject.getPressure()+"");
+        wind.setText(weatherObject.getWind()+"");
+        humidity.setText(weatherObject.getHumidity()+"");
+        sunsetTime.setText(weatherObject.getSunsetTime());
+        sunriseTime.setText(weatherObject.getSunriseTime());
+        status.setText(weatherObject.getStatus());
     }
 }

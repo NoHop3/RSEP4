@@ -47,6 +47,7 @@
 | 20   | Merge pull request #1 from NoHop3/stg/authentication  <br/> 1. **_Added file(s) ✔️ ->_** 10 ↔️ **_2. Edited file(s) 📝 ->_** 6|   Stefan    | 19.07.2022 |
 | 21   | Update README.md <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 1|   Stefan    | 19.07.2022 |
 | 22   | Continuing work on stg/weather-details-add-edit <br/> 1. **_Added file(s) ✔️ ->_** 2 ↔️ **_2. Edited file(s) 📝 ->_** 11|   Stefan    | 19.07.2022 |
+| 23   | Continuing work on stg/weather-details-add-edit <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 8|   Stefan    | 19.07.2022 |
 
 ### Progress bar
 - [x] Initial commit of the app (02.07.2022)

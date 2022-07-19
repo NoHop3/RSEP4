@@ -1,5 +1,6 @@
 package com.example.rsep4.ui.main;
 
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -63,7 +64,7 @@ public class WeatherFragment extends Fragment implements WeatherAdapter.ItemClic
         adapter = new WeatherAdapter(view.getContext(), weatherList, this);
         recyclerView.setAdapter(adapter);
         mViewModel = new ViewModelProvider(this).get(WeatherViewModel.class);
-        detailsViewModel = new ViewModelProvider(this).get(WeatherDetailsViewModel.class);
+        detailsViewModel = new ViewModelProvider(getActivity()).get(WeatherDetailsViewModel.class);
         mViewModel.getWeatherListObserver().observe(getViewLifecycleOwner(), weatherModels -> {
              if(weatherModels != null) {
                  loader.setVisibility(View.GONE);
@@ -81,6 +82,7 @@ public class WeatherFragment extends Fragment implements WeatherAdapter.ItemClic
         // FAB onclick -> Should go to add a new location fragment
         fabAdd.setOnClickListener( view1 -> {
         if(this.getActivity() != null) {
+            detailsViewModel.resetDetails();
             this.getActivity().getSupportFragmentManager().beginTransaction()
                     .replace(this.getId(), WeatherModifyFragment.newInstance())
                     .commitNow();
@@ -100,6 +102,7 @@ public class WeatherFragment extends Fragment implements WeatherAdapter.ItemClic
     public void onWeatherClick(WeatherModel item) {
         try {
             detailsViewModel.setCity(item.getCity());
+            Log.v("city", detailsViewModel.getCity());
             if(this.getActivity() != null) {
                 this.getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(this.getId(), WeatherDetailsFragment.newInstance())
@@ -111,4 +114,5 @@ public class WeatherFragment extends Fragment implements WeatherAdapter.ItemClic
             Log.e("error in setting city", e.getMessage());
         }
     }
+
 }
