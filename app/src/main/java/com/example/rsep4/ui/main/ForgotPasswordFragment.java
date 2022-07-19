@@ -20,35 +20,43 @@ import com.example.rsep4.models.UserModel;
 import com.example.rsep4.viewmodels.AuthenticationViewModel;
 import com.google.android.material.snackbar.Snackbar;
 
-public class LoginFragment extends Fragment {
+public class ForgotPasswordFragment extends Fragment {
     private AuthenticationViewModel viewModel;
     private EditText username;
     private EditText password;
-    private Button btnLogin;
-    private TextView forgotPassword;
+    private EditText confirmPassword;
+    private Button btnUpdate;
     private TextView goToRegister;
 
-    public static LoginFragment newInstance() {return new LoginFragment();}
+    public static ForgotPasswordFragment newInstance() {return new ForgotPasswordFragment();}
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_login, container, false);
+        View view = inflater.inflate(R.layout.fragment_forgot_password, container, false);
 
         // Setting all layouts
         username = view.findViewById(R.id.username);
         password = view.findViewById(R.id.password);
-        btnLogin = view.findViewById(R.id.btnLogin);
-        forgotPassword = view.findViewById(R.id.forgotPassword);
+        confirmPassword = view.findViewById(R.id.confirmPassword);
+        btnUpdate = view.findViewById(R.id.btnUpdate);
         goToRegister = view.findViewById(R.id.goToRegister);
 
         // Fragment logic
         viewModel = new ViewModelProvider(this).get(AuthenticationViewModel.class);
-        btnLogin.setOnClickListener(view1 -> {
+        btnUpdate.setOnClickListener(view1 -> {
 
             try {
-                viewModel.login(new UserModel(username.getText().toString(), password.getText().toString()));
+                if(confirmPassword.getText().toString().equalsIgnoreCase(password.getText().toString()))
+                {
+                    viewModel.updateUser(username.getText().toString(),new UserModel(username.getText().toString(), password.getText().toString()));
+                }
+                else {
+                    Snackbar.make(view, "Password must be identical", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null)
+                            .show();
+                }
                 if(this.getActivity() != null) {
                     this.getActivity().getSupportFragmentManager().beginTransaction()
                             .replace(this.getId(), WeatherFragment.newInstance())
@@ -75,19 +83,6 @@ public class LoginFragment extends Fragment {
             else
             {
                 Snackbar.make(view, "Unable to go to register.", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null)
-                        .show();
-            }
-        });
-        forgotPassword.setOnClickListener(view1 -> {
-            if(this.getActivity() != null) {
-                this.getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(this.getId(), ForgotPasswordFragment.newInstance())
-                        .commitNow();
-            }
-            else
-            {
-                Snackbar.make(view, "Unable to change password", Snackbar.LENGTH_LONG)
                         .setAction("Action", null)
                         .show();
             }
