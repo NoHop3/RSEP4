@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.rsep4.ui.main.LoginFragment;
 import com.example.rsep4.ui.main.WeatherFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -14,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container, WeatherFragment.newInstance())
+                    .replace(R.id.container, LoginFragment.newInstance())
                     .commitNow();
         }
     }

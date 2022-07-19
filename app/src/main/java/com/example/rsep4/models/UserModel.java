@@ -8,14 +8,24 @@ public class UserModel {
     private String firstName;
     private String lastName;
 
-    public UserModel(String _id, String username, String password, String email, String firstName, String lastName) {
-        this._id = _id;
+    public UserModel(String username, String password)
+    {
         this.username = username;
         this.password = password;
+    }
+    public UserModel(String username, String password, String email)
+    {
+        this(username, password);
         this.email = email;
+    }
+
+    public UserModel(String _id, String username, String password, String email, String firstName, String lastName) {
+        this(username, password, email);
+        this._id = _id;
         this.firstName = firstName;
         this.lastName = lastName;
     }
+
 
     public String get_id() {
         return _id;
