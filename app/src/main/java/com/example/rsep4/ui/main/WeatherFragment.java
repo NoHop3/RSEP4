@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.rsep4.R;
@@ -32,6 +33,7 @@ public class WeatherFragment extends Fragment {
     TextView textViewNoResult;
     WeatherAdapter adapter;
     List<WeatherModel> weatherList;
+    ProgressBar loader;
     FloatingActionButton fabAdd;
 
     public static WeatherFragment newInstance() {
@@ -48,8 +50,10 @@ public class WeatherFragment extends Fragment {
         recyclerView = view.findViewById(R.id.weatherRecyclerView);
         textViewNoResult = view.findViewById(R.id.textViewNoResult);
         fabAdd = view.findViewById(R.id.fabAdd);
+        loader = view.findViewById(R.id.loader);
 
         // Fragment logic
+        loader.setVisibility(View.VISIBLE);
         LinearLayoutManager layoutManager = new GridLayoutManager(view.getContext(), 1);
         recyclerView.setLayoutManager(layoutManager);
         adapter = new WeatherAdapter(view.getContext(), weatherList);
@@ -57,11 +61,13 @@ public class WeatherFragment extends Fragment {
         mViewModel = new ViewModelProvider(this).get(WeatherViewModel.class);
         mViewModel.getWeatherListObserver().observe(getViewLifecycleOwner(), weatherModels -> {
              if(weatherModels != null) {
+                 loader.setVisibility(View.GONE);
                  weatherList = weatherModels;
                  adapter.setWeatherList(weatherModels);
                  textViewNoResult.setVisibility(View.GONE);
              }
              else {
+                 loader.setVisibility(View.GONE);
                 textViewNoResult.setVisibility(View.VISIBLE);
              }
         });
