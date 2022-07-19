@@ -16,27 +16,27 @@ import retrofit2.http.Path;
 
 public interface APIService {
 
-    @GET("/api/v1/weather")
+    @GET("weather/{city}")
+    Call<List<WeatherModel>> getWeatherForCity(@Path(value="city") String city);
+
+    @PUT("weather/{city}")
+    Call<WeatherModel> updateWeatherForCity(@Path(value="city") String city, @Body WeatherModel weather);
+
+    @GET("weather")
     Call<List<WeatherModel>> getWeatherList();
 
-    @GET("/api/v1/weather/{city}")
-    Call<WeatherModel> getWeatherForCity(@Path("city") String city);
-
-    @POST("/api/v1/weather")
+    @POST("weather")
     Call<WeatherModel> addWeather(@Body WeatherModel weather);
 
-    @PUT("/api/v1/weather/{city}")
-    Call<WeatherModel> updateWeatherForCity(@Path("city") String city, @Body WeatherModel weather);
-
-    @DELETE("/api/v1/weather/{city}")
+    @DELETE("weather/{city}")
     Call<WeatherModel> deleteWeatherForCity(@Path("city") String city);
 
-    @POST("/api/v1/users/login")
+    @POST("users/login")
     Call<UserModel> login(@Body UserModel user);
 
-    @POST("/api/v1/users/register")
+    @POST("users/register")
     Call<UserModel> register(@Body UserModel user);
 
-    @PUT("/api/v1/users/{username}")
+    @PUT("users/{username}")
     Call<UserModel> updateUser(@Path("username") String username, @Body UserModel user);
 }
