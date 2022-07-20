@@ -51,6 +51,8 @@
 | 26   | Update README.md <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 1|   Stefan    | 19.07.2022 |
 | 27   | Continuing work on stg/room-local-storage <br/> 1. **_Added file(s) ✔️ ->_** 4 ↔️ **_2. Edited file(s) 📝 ->_** 11|   Stefan    | 20.07.2022 |
 | 28   | Update README.md <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 1|   Stefan    | 20.07.2022 |
+| 29   | Update README.md <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 1|   Stefan    | 20.07.2022 |
+| 30   | Update README.md <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 1|   Stefan    | 20.07.2022 |
 
 ### Progress bar
 - [x] Initial commit of the app (02.07.2022)
