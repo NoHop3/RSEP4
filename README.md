@@ -12,15 +12,13 @@
 
 | ID | Priority | Description   | Estimate  | Approved |
 | -- | -------  |:-------------:| :--------:| :------: |
-| 1  | Critical | As a user I want to be able to see the avgTemp of my chosen location |   8     | ❌/✔️ |
+| 1  | Critical | As a user I want to be able to see the avgTemp of my chosen location |   8     | ✔️ |
 | 2  | Critical | As a user I want to be able to see the avgTemp for multiple hours  |   8     | ❌    |
-| 3  | High | As a user I want to be able to add location to my forcast list.  |    5     | ❌      |
-| 4  | High | As a user I want to be able to see a visualization of the forcast  |    5     | ❌      |
-| 5  | High | As a user I want to be able to switch between locations |    5     | ❌      |
+| 3  | High | As a user I want to be able to add location to my forcast list.  |    5     | ✔️      |
+| 4  | High | As a user I want to be able to see a visualization of the forcast  |    5     | ✔️      |
+| 5  | High | As a user I want to be able to switch between locations |    5     | ✔️      |
 | 6  | Low | As a user I want to be able to see the weather forecast for the next 6 days |    6     | ❌      |
 | 7  | Low | As a user I want to be able to see the previous avgTemp while offline |    3     | ❌      |
-| 8  | Low | As a user I want to be |    3     | ❌      |
-| 9  | Low | As a user I want to be |    3     | ❌      |
 
 ### Change log:
 | ID| Description | Contributor | Date |
@@ -50,7 +48,7 @@
 | 23   | Continuing work on stg/weather-details-add-edit <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 8|   Stefan    | 19.07.2022 |
 | 24   | Merge pull request #2 from NoHop3/stg/weather-details-add-edit <br/> 1. **_Added file(s) ✔️ ->_** 2 ↔️ **_2. Edited file(s) 📝 ->_** 12|   Stefan    | 19.07.2022 |
 | 25   | Update README.md <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 1|   Stefan    | 19.07.2022 |
-| 26   | Continuing work on stg/room-local-storage <br/> 1. **_Added file(s) ✔️ ->_** 4 ↔️ **_2. Edited file(s) 📝 ->_** 11|   Stefan    | 20.07.2022 |
+| 26   | Update README.md <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 1|   Stefan    | 19.07.2022 |
 
 ### Progress bar
 - [x] Initial commit of the app (02.07.2022)
