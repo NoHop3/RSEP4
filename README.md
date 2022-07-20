@@ -49,6 +49,8 @@
 | 24   | Merge pull request #2 from NoHop3/stg/weather-details-add-edit <br/> 1. **_Added file(s) ✔️ ->_** 2 ↔️ **_2. Edited file(s) 📝 ->_** 12|   Stefan    | 19.07.2022 |
 | 25   | Update README.md <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 1|   Stefan    | 19.07.2022 |
 | 26   | Update README.md <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 1|   Stefan    | 19.07.2022 |
+| 27   | Continuing work on stg/room-local-storage <br/> 1. **_Added file(s) ✔️ ->_** 4 ↔️ **_2. Edited file(s) 📝 ->_** 11|   Stefan    | 20.07.2022 |
+| 28   | Update README.md <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 1|   Stefan    | 20.07.2022 |
 
 ### Progress bar
 - [x] Initial commit of the app (02.07.2022)
