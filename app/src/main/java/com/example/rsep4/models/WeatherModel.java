@@ -1,8 +1,17 @@
 package com.example.rsep4.models;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "weather_table")
 public class WeatherModel {
 
+    @PrimaryKey
+    @NonNull
     private String _id;
+
     private String city;
     private String country;
     private int avgTemp;
@@ -18,6 +27,7 @@ public class WeatherModel {
     private String updatedAt;
     private String status;
 
+    @Ignore
     public WeatherModel(String city, String country, int avgTemp, int minTemp, int maxTemp, int humidity, int pressure, int wind, String description, String picture, String updatedAt, String status, String sunriseTime, String sunsetTime) {
         this.city = city;
         this.country = country;

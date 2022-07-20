@@ -1,6 +1,5 @@
 package com.example.rsep4.ui.main;
 
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -18,7 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.rsep4.R;
 import com.example.rsep4.adapter.WeatherAdapter;
@@ -65,7 +63,7 @@ public class WeatherFragment extends Fragment implements WeatherAdapter.ItemClic
         recyclerView.setAdapter(adapter);
         mViewModel = new ViewModelProvider(this).get(WeatherViewModel.class);
         detailsViewModel = new ViewModelProvider(getActivity()).get(WeatherDetailsViewModel.class);
-        mViewModel.getWeatherListObserver().observe(getViewLifecycleOwner(), weatherModels -> {
+        mViewModel.fetchAllWeather().observe(getViewLifecycleOwner(), weatherModels -> {
              if(weatherModels != null) {
                  loader.setVisibility(View.GONE);
                  weatherList = weatherModels;
@@ -77,7 +75,7 @@ public class WeatherFragment extends Fragment implements WeatherAdapter.ItemClic
                 textViewNoResult.setVisibility(View.VISIBLE);
              }
         });
-        mViewModel.getAllWeather();
+        mViewModel.fetchAllWeather();
 
         // FAB onclick -> Should go to add a new location fragment
         fabAdd.setOnClickListener( view1 -> {
