@@ -8,10 +8,11 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "weather_table")
 public class WeatherModel {
 
-    @PrimaryKey
+    @PrimaryKey ( autoGenerate = true )
     @NonNull
-    private String _id;
+    private int pk;
 
+    private String _id;
     private String city;
     private String country;
     private int avgTemp;
@@ -48,6 +49,14 @@ public class WeatherModel {
     public WeatherModel(String _id, String city, String country, int avgTemp, int minTemp, int maxTemp, int humidity, int pressure, int wind, String description, String picture, String updatedAt, String status, String sunriseTime, String sunsetTime) {
         this(city, country, avgTemp, minTemp, maxTemp, humidity, pressure, wind, description, picture, updatedAt, status, sunriseTime, sunsetTime);
         this._id = _id;
+    }
+
+    public int getPk() {
+        return pk;
+    }
+
+    public void setPk(int pk) {
+        this.pk = pk;
     }
 
     public String get_id() {

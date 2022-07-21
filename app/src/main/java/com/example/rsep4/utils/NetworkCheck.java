@@ -1,16 +1,25 @@
 package com.example.rsep4.utils;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.AsyncTask;
+import android.util.Log;
+
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 public class NetworkCheck {
-    public Boolean isOnline() {
-        try {
-            Process p1 = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.com");
-            int returnVal = p1.waitFor();
-            boolean reachable = (returnVal==0);
-            return reachable;
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return false;
+
+    private Context context;
+
+    public NetworkCheck(Context context) {
+        this.context = context;
+    }
+
+    public boolean isNetworkAvailable() {
+        final ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
+        return connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnected();
     }
 }

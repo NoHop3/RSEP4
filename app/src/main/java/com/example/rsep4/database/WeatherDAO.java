@@ -9,6 +9,7 @@ import androidx.room.Update;
 
 import com.example.rsep4.models.WeatherModel;
 
+import java.net.HttpCookie;
 import java.util.List;
 
 @Dao
@@ -28,4 +29,7 @@ public interface WeatherDAO {
 
     @Query("SELECT * FROM weather_table")
     LiveData<List<WeatherModel>> getAllWeather();
+
+    @Query("SELECT * FROM weather_table WHERE weather_table.city = :city")
+    LiveData<WeatherModel> getWeatherDetails(String city);
 }

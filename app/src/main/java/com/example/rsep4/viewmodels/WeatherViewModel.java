@@ -21,7 +21,7 @@ public class WeatherViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<WeatherModel>> getWeatherListObserver() {
-        return weatherRepository.getAllWeather();
+        return weatherRepository.getAllWeatherFromDb();
     }
 
     public MutableLiveData<List<WeatherModel>> fetchAllWeather(){

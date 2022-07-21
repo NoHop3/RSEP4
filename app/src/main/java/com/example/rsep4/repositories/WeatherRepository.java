@@ -1,7 +1,6 @@
 package com.example.rsep4.repositories;
 
 import android.app.Application;
-import android.os.AsyncTask;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -13,8 +12,11 @@ import com.example.rsep4.database.WeatherDAO;
 import com.example.rsep4.models.WeatherModel;
 import com.example.rsep4.network.APIService;
 import com.example.rsep4.network.RetrofitInstance;
+import com.example.rsep4.utils.NetworkCheck;
 
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,6 +29,8 @@ public class WeatherRepository {
     private MutableLiveData<List<WeatherModel>> fetchAllWeather;
     private MutableLiveData<WeatherModel> selectedWeather;
     private String city;
+    private NetworkCheck networkCheck;
+    ExecutorService executorService;
 
     private WeatherRepository(Application application){
         LocalDatabase database = LocalDatabase.getInstance(application);
@@ -34,6 +38,8 @@ public class WeatherRepository {
         allWeather = weatherDAO.getAllWeather();
         fetchAllWeather = new MutableLiveData<>();
         selectedWeather = new MutableLiveData<>();
+        networkCheck = new NetworkCheck(application);
+        executorService = Executors.newFixedThreadPool(2);
         this.city = "";
     }
 
@@ -60,43 +66,70 @@ public class WeatherRepository {
         return instance;
     }
 
-    public LiveData<List<WeatherModel>> getAllWeather(){
+    public LiveData<List<WeatherModel>> getAllWeatherFromDb(){
+        if(allWeather == null)
+        {
+            allWeather = weatherDAO.getAllWeather();
+        }
         return allWeather;
     }
 
     public void insert(WeatherModel weatherModel)
     {
-        new InsertWeatherAsync(weatherDAO).execute(weatherModel);
+        executorService.execute(() -> weatherDAO.insert(weatherModel));
     }
     public void update(WeatherModel weatherModel)
     {
-        new UpdateWeatherAsync(weatherDAO).execute(weatherModel);
+        executorService.execute(() -> weatherDAO.update(weatherModel));
     }
     public void delete(WeatherModel weatherModel)
     {
-        new DeleteWeatherAsync(weatherDAO).execute(weatherModel);
+        executorService.execute(() -> weatherDAO.delete(weatherModel));
     }
     public void deleteAll(WeatherModel weatherModel)
     {
-        new DeleteAllWeatherAsync(weatherDAO).execute(weatherModel);
+        executorService.execute(() -> weatherDAO.deleteAllWeather());
     }
 
-    public void fetchAllWeather() {
-        APIService apiService = RetrofitInstance.getRetrofitClient().create(APIService.class);
-        Call<List<WeatherModel>> call = apiService.getWeatherList();
-        call.enqueue(new Callback<List<WeatherModel>>() {
-            @Override
-            public void onResponse(@NonNull Call<List<WeatherModel>> call, @NonNull Response<List<WeatherModel>> response) {
-                Log.d("response", response.toString());
-                fetchAllWeather.postValue(response.body());
-            }
 
-            @Override
-            public void onFailure(@NonNull Call<List<WeatherModel>> call, @NonNull Throwable t) {
-                Log.d("response", t.toString());
-                fetchAllWeather.postValue(null);
-            }
-        });
+
+    public void fetchAllWeather() {
+        if(networkCheck.isNetworkAvailable()) // check network connection
+        {
+            Log.d("debuging", "network is available?");
+            APIService apiService = RetrofitInstance.getRetrofitClient().create(APIService.class);
+            Call<List<WeatherModel>> call = apiService.getWeatherList();
+            call.enqueue(new Callback<List<WeatherModel>>() {
+                @Override
+                public void onResponse(@NonNull Call<List<WeatherModel>> call, @NonNull Response<List<WeatherModel>> response) {
+                    Log.d("response", response.toString());
+                    if(response.isSuccessful())
+                    {
+                        fetchAllWeather.setValue(response.body()); // get rooms from the API
+                        assert response.body() != null;
+                        for (WeatherModel weather : response.body())
+                        {
+                            insert(weather); // add the data to the local db
+                        }
+                        allWeather = weatherDAO.getAllWeather();
+                    }
+                    else{
+                        Log.e("fail fetching weather", response.message());
+                    }
+                }
+
+                @Override
+                public void onFailure(@NonNull Call<List<WeatherModel>> call, @NonNull Throwable t) {
+                    Log.d("response", t.toString());
+                    fetchAllWeather.setValue(null);
+                }
+            });
+        }
+        else {
+            Log.d("debuging", "network not available?");
+            Log.d("checking data in db", getAllWeatherFromDb().getValue().toString());
+            fetchAllWeather.setValue(getAllWeatherFromDb().getValue()); // get data from the local db
+        }
     }
 
     public void createWeather(WeatherModel weatherToAdd) {
@@ -116,20 +149,26 @@ public class WeatherRepository {
     }
 
     public void getWeatherDetails(String city) {
-        APIService apiService = RetrofitInstance.getRetrofitClient().create(APIService.class);
-        Call<WeatherModel> call = apiService.getWeatherForCity(city);
+        if(networkCheck.isNetworkAvailable())
+        {
+            APIService apiService = RetrofitInstance.getRetrofitClient().create(APIService.class);
+            Call<WeatherModel> call = apiService.getWeatherForCity(city);
 
-        call.enqueue(new Callback<WeatherModel>() {
-            @Override
-            public void onResponse(@NonNull Call<WeatherModel> call, @NonNull Response<WeatherModel> response) {
-                selectedWeather.postValue(response.body());
-            }
+            call.enqueue(new Callback<WeatherModel>() {
+                @Override
+                public void onResponse(@NonNull Call<WeatherModel> call, @NonNull Response<WeatherModel> response) {
+                    selectedWeather.postValue(response.body());
+                }
 
-            @Override
-            public void onFailure(@NonNull Call<WeatherModel> call, @NonNull Throwable t) {
-                selectedWeather.postValue(null);
-            }
-        });
+                @Override
+                public void onFailure(@NonNull Call<WeatherModel> call, @NonNull Throwable t) {
+                    selectedWeather.postValue(null);
+                }
+            });
+        }
+        else {
+            selectedWeather.postValue(weatherDAO.getWeatherDetails(city).getValue());
+        }
     }
 
     public void updateWeatherDetails(String city, WeatherModel weatherToUpdate) {
@@ -167,57 +206,6 @@ public class WeatherRepository {
     public void resetDetails() {
         setCity("");
         selectedWeather = new MutableLiveData<>();
-    }
-
-
-    private static class InsertWeatherAsync extends AsyncTask<WeatherModel, Void, Void> {
-        private WeatherDAO weatherDAO;
-
-        protected InsertWeatherAsync(WeatherDAO weatherDAO){
-            this.weatherDAO = weatherDAO;
-        }
-
-        @Override
-        protected Void doInBackground(WeatherModel... weatherModels){
-            weatherDAO.insert(weatherModels[0]);
-            return null;
-        }
-    }
-
-    private static class UpdateWeatherAsync extends AsyncTask<WeatherModel, Void, Void> {
-        private WeatherDAO weatherDAO;
-        protected UpdateWeatherAsync(WeatherDAO weatherDAO) {
-            this.weatherDAO = weatherDAO;
-        }
-        @Override
-        protected Void doInBackground(WeatherModel... weatherModels){
-            weatherDAO.update(weatherModels[0]);
-            return null;
-        }
-    }
-
-    private static class DeleteWeatherAsync extends AsyncTask<WeatherModel, Void, Void> {
-        private WeatherDAO weatherDAO;
-        protected DeleteWeatherAsync(WeatherDAO weatherDAO) {
-            this.weatherDAO = weatherDAO;
-        }
-        @Override
-        protected Void doInBackground(WeatherModel... weatherModels){
-            weatherDAO.delete(weatherModels[0]);
-            return null;
-        }
-    }
-
-    private static class DeleteAllWeatherAsync extends AsyncTask<WeatherModel, Void, Void> {
-        private WeatherDAO weatherDAO;
-        protected DeleteAllWeatherAsync(WeatherDAO weatherDAO) {
-            this.weatherDAO = weatherDAO;
-        }
-        @Override
-        protected Void doInBackground(WeatherModel... weatherModels){
-            weatherDAO.deleteAllWeather();
-            return null;
-        }
     }
 }
 
