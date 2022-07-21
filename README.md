@@ -13,12 +13,13 @@
 | ID | Priority | Description   | Estimate  | Approved |
 | -- | -------  |:-------------:| :--------:| :------: |
 | 1  | Critical | As a user I want to be able to see the avgTemp of my chosen location |   8     | ✔️ |
-| 2  | Critical | As a user I want to be able to see the avgTemp for multiple hours  |   8     | ❌    |
-| 3  | High | As a user I want to be able to add location to my forcast list.  |    5     | ✔️      |
-| 4  | High | As a user I want to be able to see a visualization of the forcast  |    5     | ✔️      |
-| 5  | High | As a user I want to be able to switch between locations |    5     | ✔️      |
-| 6  | Low | As a user I want to be able to see the weather forecast for the next 6 days |    6     | ❌      |
-| 7  | Low | As a user I want to be able to see the previous avgTemp while offline |    3     | ❌      |
+| 2  | High | As a user I want to be able to add location to my forcast list.  |    5     | ✔️      |
+| 3  | High | As a user I want to be able to see a visualization of the forcast  |    5     | ✔️      |
+| 4  | High | As a user I want to be able to switch between locations |    5     | ✔️      |
+| 5  | Low | As a user I want to be able to login in the app in order to have my own identity |    3     | ✔️      |
+| 6  | Low | As a user I want to be able to register in the app in order to create my own identity |    3     | ✔️      |
+| 7  | Low | As a user I want to be able to see the weather forecast for the next 6 days |    6     | ❌      |
+| 8  | Low | As a user I want to be able to see the previous avgTemp while offline |    3     | ✔️      |
 
 ### Change log:
 | ID| Description | Contributor | Date |
@@ -54,6 +55,8 @@
 | 29   | Update README.md <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 1|   Stefan    | 20.07.2022 |
 | 30   | Update README.md <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 1|   Stefan    | 20.07.2022 |
 | 31   | Continuing work on stg/room-local-storage <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 7|   Stefan    | 21.07.2022 |
+| 32   | Merge pull request #3 from NoHop3/stg/room-local-storage <br/> 1. **_Added file(s) ✔️ ->_** 4 ↔️ **_2. Edited file(s) 📝 ->_** 11|   Stefan    | 21.07.2022 |
+| 33   | Update README.md <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 1|   Stefan    | 21.07.2022 |
 
 ### Progress bar
 - [x] Initial commit of the app (02.07.2022)
