@@ -1,6 +1,16 @@
 package com.example.rsep4.models;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "weather_table")
 public class WeatherModel {
+
+    @PrimaryKey ( autoGenerate = true )
+    @NonNull
+    private int pk;
 
     private String _id;
     private String city;
@@ -18,6 +28,7 @@ public class WeatherModel {
     private String updatedAt;
     private String status;
 
+    @Ignore
     public WeatherModel(String city, String country, int avgTemp, int minTemp, int maxTemp, int humidity, int pressure, int wind, String description, String picture, String updatedAt, String status, String sunriseTime, String sunsetTime) {
         this.city = city;
         this.country = country;
@@ -38,6 +49,14 @@ public class WeatherModel {
     public WeatherModel(String _id, String city, String country, int avgTemp, int minTemp, int maxTemp, int humidity, int pressure, int wind, String description, String picture, String updatedAt, String status, String sunriseTime, String sunsetTime) {
         this(city, country, avgTemp, minTemp, maxTemp, humidity, pressure, wind, description, picture, updatedAt, status, sunriseTime, sunsetTime);
         this._id = _id;
+    }
+
+    public int getPk() {
+        return pk;
+    }
+
+    public void setPk(int pk) {
+        this.pk = pk;
     }
 
     public String get_id() {

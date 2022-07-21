@@ -1,18 +1,30 @@
 package com.example.rsep4.models;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "user_table")
 public class UserModel {
+
+    @PrimaryKey
+    @NonNull
     private String _id;
+
     private String username;
     private String password;
     private String email;
     private String firstName;
     private String lastName;
 
+    @Ignore
     public UserModel(String username, String password)
     {
         this.username = username;
         this.password = password;
     }
+    @Ignore
     public UserModel(String username, String password, String email)
     {
         this(username, password);
