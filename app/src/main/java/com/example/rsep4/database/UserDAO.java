@@ -1,5 +1,6 @@
 package com.example.rsep4.database;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -21,4 +22,7 @@ public interface UserDAO {
 
     @Query("DELETE FROM user_table")
     void deleteAllUsers();
+
+    @Query("SELECT * FROM user_table WHERE user_table.username = :username")
+    LiveData<UserModel> getUserFromDb(String username);
 }

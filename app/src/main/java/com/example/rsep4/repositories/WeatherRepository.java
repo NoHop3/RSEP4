@@ -86,7 +86,7 @@ public class WeatherRepository {
     {
         executorService.execute(() -> weatherDAO.delete(weatherModel));
     }
-    public void deleteAll(WeatherModel weatherModel)
+    public void deleteAll()
     {
         executorService.execute(() -> weatherDAO.deleteAllWeather());
     }
