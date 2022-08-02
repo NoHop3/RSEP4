@@ -58,6 +58,7 @@
 | 32   | Merge pull request #3 from NoHop3/stg/room-local-storage <br/> 1. **_Added file(s) ✔️ ->_** 4 ↔️ **_2. Edited file(s) 📝 ->_** 11|   Stefan    | 21.07.2022 |
 | 33   | Update README.md <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 1|   Stefan    | 21.07.2022 |
 | 34   | Update README.md <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 1|   Stefan    | 21.07.2022 |
+| 35   | Minor changes in a couple of files <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 6|   Stefan    | 01.08.2022 |
 
 ### Progress bar
 - [x] Initial commit of the app (02.07.2022)

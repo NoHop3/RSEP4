@@ -14,6 +14,10 @@ import com.example.rsep4.models.UserModel;
 import com.example.rsep4.models.WeatherModel;
 import com.example.rsep4.network.APIService;
 import com.example.rsep4.network.RetrofitInstance;
+import com.example.rsep4.utils.NetworkCheck;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,12 +28,15 @@ public class UserRepository {
     private static UserRepository instance;
     private MutableLiveData<UserModel> loggedUser;
     private LiveData<UserModel> loggedUserIfNoInternet;
+    private NetworkCheck networkCheck;
+    ExecutorService executorService;
     private UserRepository(Application application)
     {
         LocalDatabase database = LocalDatabase.getInstance(application);
         userDAO = database.userDAO();
-//        loggedUserIfNoInternet = userDAO.getLoggedUser();
         loggedUser = new MutableLiveData<>();
+        executorService = Executors.newFixedThreadPool(2);
+        networkCheck = new NetworkCheck(application);
     }
 
     public static synchronized UserRepository getInstance(Application application){
@@ -49,21 +56,28 @@ public class UserRepository {
     }
 
     public void login(UserModel userToLogin) {
-        APIService apiService = RetrofitInstance.getRetrofitClient().create(APIService.class);
-        Call<UserModel> call = apiService.login(userToLogin);
-        call.enqueue(new Callback<UserModel>() {
-            @Override
-            public void onResponse(@NonNull Call<UserModel> call, @NonNull Response<UserModel> response) {
-                Log.d("login", response.toString());
-                loggedUser.postValue(response.body());
-            }
+        if(networkCheck.isNetworkAvailable()) // check network connection
+        {
+            APIService apiService = RetrofitInstance.getRetrofitClient().create(APIService.class);
+            Call<UserModel> call = apiService.login(userToLogin);
+            call.enqueue(new Callback<UserModel>() {
+                @Override
+                public void onResponse(@NonNull Call<UserModel> call, @NonNull Response<UserModel> response) {
+                    Log.d("login", response.toString());
+                    loggedUser.postValue(response.body());
+                }
 
-            @Override
-            public void onFailure(@NonNull Call<UserModel> call, @NonNull Throwable t) {
-                Log.e("login", t.toString());
-                loggedUser.postValue(null);
-            }
-        });
+                @Override
+                public void onFailure(@NonNull Call<UserModel> call, @NonNull Throwable t) {
+                    Log.e("login", t.toString());
+                    loggedUser.postValue(null);
+                }
+            });
+        }
+        else {
+            Log.d("debuging", "network not available?");
+            getUserFromDb(userToLogin.getUsername()); // get data from the local db
+        }
     }
 
     public void register(UserModel userToRegister) {
@@ -101,35 +115,20 @@ public class UserRepository {
             }
         });
     }
-    public void insertUser(UserModel userModel)
+    public void insertUserDb(UserModel userModel)
     {
-        new UserRepository.InsertUserAsync(userDAO).execute(userModel);
+        executorService.execute(()-> userDAO.insert(userModel));
     }
-    public void updateUser(UserModel userModel)
+    public void updateUserDb(UserModel userModel)
     {
-        new UserRepository.UpdateUserAsync(userDAO).execute(userModel);
+        executorService.execute(()-> userDAO.update(userModel));
     }
-
-    private static class InsertUserAsync extends AsyncTask<UserModel, Void, Void> {
-        private UserDAO userDAO;
-        protected InsertUserAsync(UserDAO userDAO) {
-            this.userDAO = userDAO;
+    public LiveData<UserModel> getUserFromDb(String username)
+    {
+        loggedUserIfNoInternet = userDAO.getUserFromDb(username);
+        if(loggedUserIfNoInternet!=null){
+            return loggedUserIfNoInternet;
         }
-        @Override
-        protected Void doInBackground(UserModel... userModels){
-            userDAO.insert(userModels[0]);
-            return null;
-        }
-    }
-    private static class UpdateUserAsync extends AsyncTask<UserModel, Void, Void> {
-        private UserDAO userDAO;
-        protected UpdateUserAsync(UserDAO userDAO) {
-            this.userDAO = userDAO;
-        }
-        @Override
-        protected Void doInBackground(UserModel... userModels){
-            userDAO.update(userModels[0]);
-            return null;
-        }
+        return null;
     }
 }

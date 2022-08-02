@@ -1,5 +1,6 @@
 package com.example.rsep4.ui.main;
 
+import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -164,6 +165,7 @@ public class WeatherModifyFragment extends Fragment {
 
         return view;
     }
+    @SuppressLint("SetTextI18n")
     public void updateValues(WeatherModel weatherObject)
     {
         location.setText(String.format("%s, %s", weatherObject.getCity(), weatherObject.getCountry()));
