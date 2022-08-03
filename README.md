@@ -12,14 +12,15 @@
 
 | ID | Priority | Description   | Estimate  | Approved |
 | -- | -------  |:-------------:| :--------:| :------: |
-| 1  | Critical | As a user I want to be able to see the avgTemp of my chosen location |   8     | ✔️ |
-| 2  | Critical | As a user I want to be able to add location to my forcast list.  |    5     | ✔️      |
-| 3  | Critical | As a user I want to be able to see a visualization of the forcast  |    5     | ✔️      |
-| 4  | High | As a user I want to be able to switch between locations |    5     | ✔️      |
-| 5  | High | As a user I want to be able to login in the app in order to have my own identity |    3     | ✔️      |
-| 6  | High | As a user I want to be able to register in the app in order to create my own identity |    3     | ✔️      |
-| 7  | High | As a user I want to be able to see the previous avgTemp while offline |    3     | ✔️      |
-| 8  | Low | As a user I want to be able to see the weather forecast for the next 6 days |    6     | ❌      |
+| 1  | Critical | As a user I want to be able to see the avgTemp of my chosen location so that I can check the weather information for my desired city. |   8     | ✔️ |
+| 2  | Critical | As a user I want to be able to add a location to the forcast list so that I can contribute to the platform if I have some new location’s forecasting to share.  |    5     | ✔️      |
+| 3  | Critical | As a user I want to be able to alter a location so that I can fix potential mistakes or edit on information that has changed.  |    5     | ✔️      |
+| 4  | Critical | As a user I want to be able to see a visualization of the forcast  |    5     | ✔️      |
+| 5  | High | As a user I want to be able to switch between locations so that I can check out different forecasting data if I would want to. |    5     | ✔️      |
+| 6  | High | As a user I want to be able to login in the app in order to have my own identity. |    3     | ✔️      |
+| 7  | High | As a user I want to be able to register in the app in order to create my own identity. |    3     | ✔️      |
+| 8  | High | As a user I want to be able to see the previous avgTemp while offline so that I can check the weather forecasting even if I have no service currently. |    3     | ✔️      |
+| 9  | Low | As a user I want to be able to see the weather forecast for the next 6 days so that I have a broader idea of what the weather would look like in the next week. |    6     | ❌      |
 
 ### Change log:
 | ID| Description | Contributor | Date |
@@ -62,6 +63,7 @@
 | 36   | Merge branch 'master' into stg/room-local-storage <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 1|   Stefan    | 02.08.2022 |
 | 37   | Merge pull request #4 from NoHop3/stg/room-local-storage <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 6|   Stefan    | 02.08.2022 |
 | 38   | Update README.md <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 1|   Stefan    | 02.08.2022 |
+| 39   | Update README.md <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 1|   Stefan    | 03.08.2022 |
 
 
 
