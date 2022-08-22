@@ -64,15 +64,16 @@
 | 37   | Merge pull request #4 from NoHop3/stg/room-local-storage <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 6|   Stefan    | 02.08.2022 |
 | 38   | Update README.md <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 1|   Stefan    | 02.08.2022 |
 | 39   | Update README.md <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 1|   Stefan    | 03.08.2022 |
+| 40   | Update README.md <br/> 1. **_Added file(s) ✔️ ->_** 0 ↔️ **_2. Edited file(s) 📝 ->_** 1|   Stefan    | 22.08.2022 |
 
 
 
 ### Progress bar
 - [x] Initial commit of the app (02.07.2022)
 - [x] Initial commit of README.md (02.07.2022)
-- [ ] Work period for the SEP4 app ( 02.07.2022 - 12.08.2022 )
-- [ ] Handin for the android app semester project (12.08.2022)
-- [ ] Examination (Late August)
-### [Youtube Preview of the app] ()
+- [x] Work period for the SEP4 app ( 02.07.2022 - 12.08.2022 )
+- [x] Handin for the android app semester project (12.08.2022)
+- [x] Examination (19.08 - Final grade 4) 
+### [Youtube Preview of the app] (https://youtu.be/0uO9iEsdMoc)
 
 ### References
